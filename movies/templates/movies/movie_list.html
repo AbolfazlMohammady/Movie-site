@@ -1,0 +1,209 @@
+{% extends "_base.html" %}
+
+{% load static %}
+
+{% block title %} Movie List {% endblock title %}
+
+{% block content %}
+  <body>
+    <!-- upcoming movie section starts  -->
+    <section class="upcoming-movie" id="tv3">
+      <div class="header">
+        <div class="subtitle">
+          <small>online Streaming</small>
+          <h4>Upcoming Movies</h4>
+        </div>
+        <div class="buttons">
+          <button>Movies</button>
+          <button>TV Shows</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <div class="wrapper">
+          <ul class="movie-carousel">
+            {% for movie in tv_movie1  %}
+              <li class="card">
+                <div class="img">
+                  <a href="{{ movie.get_absolute_url }}"><img src="{{ movie.poster.url }}" alt="{{ movie.name }}" /></a>
+                </div>
+                <div class="title">
+                  <a href="{{ movie.get_absolute_url }}"><h4>{{ movie.name }}</h4></a>
+                  <span>{{ movie.release }}</span>
+                </div>
+                <div class="footer">
+                  <span>{{ movie.resolution }}</span>
+                  <div class="time-rating">
+                    <span><i class="fa-regular fa-clock"></i> {{ movie.running_time }} min</span>
+                    <span><i class="fa-solid fa-star"></i> {{ movie.rating }}</span>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- service section starts -->
+    <section class="service">
+      <div class="main">
+        <div class="img">
+          <img src="{% static 'images/service-banner.jpg' %}" alt="" />
+        </div>
+        <div class="content">
+          <small>our services</small>
+          <h4>Download Your Shows Watch Offline.</h4>
+          <p>
+            Discover a seamless movie streaming experience. 
+            Our platform allows you to stream your favorite movies in high quality. 
+            With an extensive library of genres and titles, there’s something for everyone. 
+            Log in, explore, and enjoy the world of cinema at your fingertips!
+          </p>
+          <ul class="list">
+            <li>
+              <div class="service-card">
+                <div class="img">
+                  <div class="icon">
+                    <i class="fa-solid fa-tv"></i>
+                  </div>
+                </div>
+                <div class="service-content">
+                  <h5>Enjoy on Your TV</h5>
+                  <p>
+                    With stunning visuals and immersive sound, turn your living room into a personal theater. Sit back, relax, and enjoy the show.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <hr />
+            <li>
+              <div class="service-card">
+                <div class="img">
+                  <div class="icon">
+                    <i class="fa-solid fa-video"></i>
+                  </div>
+                </div>
+                <div class="service-content">
+                  <h5>Watch Everywhere</h5>
+                  <p>
+                    Stream your favorite movies directly on your smart TV or connect via devices like Chromecast, Firestick, or Apple TV.
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- top movie section start  -->
+    <section class="top-movie same" id="tv2">
+      <div class="header">
+        <small>online streaming</small>
+        <h4>Top Rated Movies</h4>
+      </div>
+      <div class="top-movie-main">
+        <div class="buttons">
+          <button>movies</button>
+          <button>tv shows</button>
+          <button>documentry</button>
+          <button>sports</button>
+        </div>
+        <div class="movie-card">
+          <ul class="wrapper">
+            {% for movie in tv_movie2 %}
+            <li class="card">
+              <div class="img">
+                <a href="{{ movie.get_absolute_url }}"><img src="{{ movie.poster.url }}" alt="{{ movie.name }}" /></a>
+              </div>
+              <div class="title">
+                <a href="{{ movie.get_absolute_url }}"><h4>{{ movie.name }}</h4></a>
+                <span>{{ movie.release }}</span>
+              </div>
+              <div class="footer">
+                <span>{{ movie.resolution }}</span>
+                <div class="time-rating">
+                  <span><i class="fa-regular fa-clock"></i> {{ movie.running_time }} min</span>
+                  <span><i class="fa-solid fa-star"></i> {{ movie.rating }}</span>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- tvs series section starts  -->
+    <section class="tv-series same" id="tv1">
+      <div class="header">
+        <small>best tv series</small>
+        <h4>World Best TV Series</h4>
+      </div>
+      <div class="movie-card">
+        <ul class="wrapper">
+          {% for movie in tv_serious %}
+            <li class="card">
+              <div class="img">
+                <a href="{{ movie.get_absolute_url }}"><img src="{{ movie.poster.url}}" alt="{{ movie.name }}" /></a>
+              </div>
+              <div class="{{ movie.get_absolute_url }}"><h4>{{ movie.name }}</h4></a>
+                <span>{{ movie.release }}</span>
+              </div>
+              <div class="footer">
+                <span>{{ movie.resolution }}</span>
+                <div class="time-rating">
+                  <span><i class="fa-regular fa-clock"></i> {{ movie.running_time }} min</span>
+                  <span><i class="fa-solid fa-star"></i> {{ movie.rating }}</span>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+    <!-- ___________________footer ___________________-->
+    <footer>
+      <div class="main">
+        <div class="footer-top">
+          <nav>
+            <div class="logo">
+              <img src="{% static 'images/icons8-logo-96.png' %}" alt="">
+            </div>
+            <ul class="list">
+              <li><a href="{% url 'home' %}">home</a></li>
+              <li><a href="/movies#tv3">movie</a></li>
+              <li><a href="/movies#tv2">top movies</a></li>
+              <li><a href="/movies#tv1">tv series</a></li>
+            </ul>
+          </nav>
+          <hr>
+          <div class="links">
+            <div class="text-links">
+              <a href="">faq</a>
+              <a href="">help center</a>
+              <a href="">terms of use</a>
+              <a href="">privacy</a>
+            </div>
+            <div class="social-links">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-brands fa-twitter"></i></a>
+              <a href=""><i class="fa-brands fa-pinterest"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&#169; 2025 <a href="">Wenet</a>. All Rights Reserved</p>
+          </div>
+          <div class="img">
+            <img src="{% static 'images/footer-bottom-img.png' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button class="back-to-top"><i class="fa-solid fa-chevron-up"></i></button>
+  </body>
+{% endblock content %}

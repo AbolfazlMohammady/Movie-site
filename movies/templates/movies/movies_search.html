@@ -1,0 +1,32 @@
+{% extends "_base.html" %} 
+{% load static %}
+{% block content %}
+    <h1 class="text-center">نتایج جستجو</h1>
+    <p class="text-center">شما جستجو کردید برای: "{{ query }}"</p>
+
+    {% if results %}
+        <div class="movie-results">
+            <ul class="list-unstyled d-flex flex-wrap justify-content-center">
+                {% for movie in results %}
+                    <li class="movie-item">
+                        <div class="movie-card">
+                            <a href="{{ movie.get_absolute_url }}">
+                                {% if movie.image %}
+                                    <img src="{{ movie.image.url }}" alt="{{ movie.name }}" 
+                                         width="100" height="100" style="object-fit: cover;"> <!-- اندازه تصویر -->
+                                {% else %}
+                                    <img src="{% static 'images/default.jpg' %}" alt="تصویری در دسترس نیست" 
+                                         width="200" height="200" style="object-fit: cover;"> <!-- اندازه تصویر -->
+                                {% endif %}
+                                <h2 class="movie-title">{{ movie.name }}</h2>
+                                <span class="movie-category">{{ movie.category }}</span>
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p class="text-center">هیچ نتیجه‌ای پیدا نشد.</p>
+    {% endif %}
+{% endblock %}

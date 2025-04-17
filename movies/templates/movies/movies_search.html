@@ -1,32 +1,32 @@
 {% extends "_base.html" %} 
 {% load static %}
 {% block content %}
-    <h1 class="text-center">نتایج جستجو</h1>
-    <p class="text-center">شما جستجو کردید برای: "{{ query }}"</p>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">🎬 نتایج جستجو</h1>
+        <p class="text-center">شما جستجو کردید برای: <strong>{{ query }}</strong></p>
 
-    {% if results %}
-        <div class="movie-results">
-            <ul class="list-unstyled d-flex flex-wrap justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center align-items-stretch gap-4">
+            {% if results %}
                 {% for movie in results %}
-                    <li class="movie-item">
-                        <div class="movie-card">
-                            <a href="{{ movie.get_absolute_url }}">
-                                {% if movie.image %}
-                                    <img src="{{ movie.image.url }}" alt="{{ movie.name }}" 
-                                         width="100" height="100" style="object-fit: cover;"> <!-- اندازه تصویر -->
+                    <div class="card text-center shadow-sm" style="width: 18rem;">
+                        <div class="card shadow-sm h-100 text-center">
+                            <a href="{{ movie.get_absolute_url }}" class="text-decoration-none text-dark">
+                                {% if movie.poster %}
+                                    <img src="{{ movie.poster.url }}" class="card-img-top" alt="{{ movie.name }}" style="height: 250px; object-fit: cover;">
                                 {% else %}
-                                    <img src="{% static 'images/default.jpg' %}" alt="تصویری در دسترس نیست" 
-                                         width="200" height="200" style="object-fit: cover;"> <!-- اندازه تصویر -->
+                                    <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="تصویری در دسترس نیست" style="height: 250px; object-fit: cover;">
                                 {% endif %}
-                                <h2 class="movie-title">{{ movie.name }}</h2>
-                                <span class="movie-category">{{ movie.category }}</span>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ movie.name }}</h5>
+                                    <span class="badge bg-primary">{{ movie.category }}</span>
+                                </div>
                             </a>
                         </div>
-                    </li>
+                    </div>
                 {% endfor %}
-            </ul>
+            {% else %}
+                <p class="text-center mt-5 text-muted">هیچ نتیجه‌ای پیدا نشد.</p>
+            {% endif %}
         </div>
-    {% else %}
-        <p class="text-center">هیچ نتیجه‌ای پیدا نشد.</p>
-    {% endif %}
+    </div>
 {% endblock %}

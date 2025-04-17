@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from movies.views import search
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('', include("pages.urls")),
     path('accounts/', include("allauth.urls")),

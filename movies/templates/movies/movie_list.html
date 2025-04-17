@@ -10,13 +10,13 @@
     <section class="upcoming-movie" id="tv3">
       <div class="header">
         <div class="subtitle">
-          <small>online Streaming</small>
+          {% comment %} <small>online Streaming</small> {% endcomment %}
           <h4>Upcoming Movies</h4>
         </div>
-        <div class="buttons">
+        {% comment %} <div class="buttons">
           <button>Movies</button>
           <button>TV Shows</button>
-        </div>
+        </div> {% endcomment %}
       </div>
       <div class="movie-card">
         <div class="wrapper">
@@ -99,16 +99,16 @@
     <!-- top movie section start  -->
     <section class="top-movie same" id="tv2">
       <div class="header">
-        <small>online streaming</small>
+        {% comment %} <small>online streaming</small> {% endcomment %}
         <h4>Top Rated Movies</h4>
       </div>
-      <div class="top-movie-main">
+      {% comment %} <div class="top-movie-main">
         <div class="buttons">
           <button>movies</button>
           <button>tv shows</button>
           <button>documentry</button>
           <button>sports</button>
-        </div>
+        </div> {% endcomment %}
         <div class="movie-card">
           <ul class="wrapper">
             {% for movie in tv_movie2 %}
@@ -143,21 +143,22 @@
       <div class="movie-card">
         <ul class="wrapper">
           {% for movie in tv_serious %}
-            <li class="card">
-              <div class="img">
-                <a href="{{ movie.get_absolute_url }}"><img src="{{ movie.poster.url}}" alt="{{ movie.name }}" /></a>
+          <li class="card">
+            <div class="img">
+              <a href="{{ movie.get_absolute_url }}"><img src="{{ movie.poster.url }}" alt="{{ movie.name }}" /></a>
+            </div>
+            <div class="title">
+              <a href="{{ movie.get_absolute_url }}"><h4>{{ movie.name }}</h4></a>
+              <span>{{ movie.release }}</span>
+            </div>
+            <div class="footer">
+              <span>{{ movie.resolution }}</span>
+              <div class="time-rating">
+                <span><i class="fa-regular fa-clock"></i> {{ movie.running_time }} min</span>
+                <span><i class="fa-solid fa-star"></i> {{ movie.rating }}</span>
               </div>
-              <div class="{{ movie.get_absolute_url }}"><h4>{{ movie.name }}</h4></a>
-                <span>{{ movie.release }}</span>
-              </div>
-              <div class="footer">
-                <span>{{ movie.resolution }}</span>
-                <div class="time-rating">
-                  <span><i class="fa-regular fa-clock"></i> {{ movie.running_time }} min</span>
-                  <span><i class="fa-solid fa-star"></i> {{ movie.rating }}</span>
-                </div>
-              </div>
-            </li>
+            </div>
+          </li>
           {% endfor %}
         </ul>
       </div>
@@ -170,40 +171,40 @@
             <div class="logo">
               <img src="{% static 'images/icons8-logo-96.png' %}" alt="">
             </div>
-            <ul class="list">
+            {% comment %} <ul class="list">
               <li><a href="{% url 'home' %}">home</a></li>
               <li><a href="/movies#tv3">movie</a></li>
               <li><a href="/movies#tv2">top movies</a></li>
               <li><a href="/movies#tv1">tv series</a></li>
-            </ul>
+            </ul> {% endcomment %}
           </nav>
           <hr>
           <div class="links">
             <div class="text-links">
-              <a href="">faq</a>
-              <a href="">help center</a>
-              <a href="">terms of use</a>
-              <a href="">privacy</a>
+              <a href="#">faq</a>
+              <a href="#">help center</a>
+              <a href="#">terms of use</a>
+              <a href="#">privacy</a>
             </div>
-            <div class="social-links">
+            <div class="copyright">
+              <p>&#169; 2025 <a href="">Wenet</a>. All Rights Reserved</p>
+            </div> 
+            {% comment %} <div class="social-links">
               <a href=""><i class="fa-brands fa-facebook"></i></a>
               <a href=""><i class="fa-brands fa-twitter"></i></a>
               <a href=""><i class="fa-brands fa-pinterest"></i></a>
               <a href=""><i class="fa-brands fa-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <div class="copyright">
-            <p>&#169; 2025 <a href="">Wenet</a>. All Rights Reserved</p>
-          </div>
-          <div class="img">
+            </div> {% endcomment %}
+          {% comment %} </div>
+        </div> {% endcomment %}
+        {% comment %} <div class="footer-bottom">
+          {% comment %} <div class="img">
             <img src="{% static 'images/footer-bottom-img.png' %}" alt="">
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </footer>
 
-    <button class="back-to-top"><i class="fa-solid fa-chevron-up"></i></button>
+    {% comment %} <button class="back-to-top"><i class="fa-solid fa-chevron-up"></i></button> {% endcomment %}
   </body>
 {% endblock content %}

@@ -42,7 +42,7 @@ class Movie(models.Model):
     assortment = models.CharField(max_length=6, choices=STATUS_ASSORTMENT)
     poster = models.ImageField(upload_to="movies/")
     video = models.FileField(upload_to="movies/videos/", blank=True, null=True)
-    
+    created_at= models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name 
     

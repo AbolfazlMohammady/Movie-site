@@ -2,10 +2,11 @@ from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
 from django.template import loader
+from import_export.admin import ImportMixin,ExportMixin
 from .models import Movie, Genre
 
 @admin.register(Genre)
-class GenreAdmin(admin.ModelAdmin):
+class GenreAdmin(ImportMixin,admin.ModelAdmin):
     list_display = ["title", ]
 
     
@@ -19,7 +20,7 @@ def movie_chart_view(request):
     return HttpResponse(template.render(context, request))
 
 @admin.register(Movie)
-class MovieAdmin(admin.ModelAdmin):
+class MovieAdmin(ExportMixin,ImportMixin,admin.ModelAdmin):
     list_display = ["id", "name", "resolution",]
     list_filter = ["release", "category", "resolution", "assortment"]
     search_fields = ["name", "description"]

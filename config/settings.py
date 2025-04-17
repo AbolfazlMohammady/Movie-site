@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'allauth',
     'allauth.account',
+    'import_export',
+
     
     
     'accounts',
@@ -168,3 +171,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+#config Admin
+GRAPPELLI_ADMIN_TITLE = "پنل مدیریت من"

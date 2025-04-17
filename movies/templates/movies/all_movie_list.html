@@ -1,0 +1,113 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Movie List{% endblock title %}
+
+{% block content %}
+<section class="upcoming-movie" id="tv3" style="padding: 40px 20px;">
+  <div class="header" style="text-align: center; margin-bottom: 20px;">
+    <div class="subtitle">
+      <h4 style="font-size: 1.8rem; color: #FFD700;">Upcoming Movies</h4>
+    </div>
+  </div>
+
+  <div class="movie-card">
+    <div class="wrapper">
+      <ul class="movie-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; list-style: none; padding: 0;">
+        {% for movie in movies %}
+        <li class="card" style="border: 2px solid #FFD700; border-radius: 10px; overflow: hidden; background-color: #111; color: #eee; box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3); transition: transform 0.3s;">
+          <div class="img" style="height: 250px; overflow: hidden;">
+            <a href="{{ movie.get_absolute_url }}">
+              <img src="{{ movie.poster.url }}" alt="{{ movie.name }}" style="width: 100%; height: 100%; object-fit: cover;" />
+            </a>
+          </div>
+          <div class="title" style="padding: 10px;">
+            <a href="{{ movie.get_absolute_url }}" style="text-decoration: none;">
+              <h4 style="margin: 0; font-size: 1.1rem; color: #FFD700; font-weight: bold; text-align: center;">{{ movie.name }}</h4>
+            </a>
+            <p style="font-size: 0.85rem; color: #ccc; text-align: center; margin: 5px 0 0;">{{ movie.release }}</p>
+          </div>
+          <div class="footer" style="padding: 10px; font-size: 0.85rem; color: #bbb; text-align: center;">
+            <span style="display: block; margin-bottom: 6px; font-weight: bold;">{{ movie.resolution }}</span>
+            <div class="time-rating" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 0.85rem;">
+              <span><i class="fa-regular fa-clock" style="color: #FFD700;"></i> {{ movie.running_time }} min</span>
+              <span><i class="fa-solid fa-star" style="color: #FFD700;"></i> {{ movie.rating }}</span>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- Pagination -->
+<div class="pagination-wrapper" style="display: flex; justify-content: center; margin-top: 30px;">
+    <div class="pagination text-center">
+      {% if page_obj.has_previous %}
+        <a class="pagination-btn" href="?page=1">&laquo; اول</a>
+        <a class="pagination-btn" href="?page={{ page_obj.previous_page_number }}">قبلی</a>
+      {% endif %}
+  
+      <span class="pagination-current">
+        صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}
+      </span>
+  
+      {% if page_obj.has_next %}
+        <a class="pagination-btn" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+        <a class="pagination-btn" href="?page={{ page_obj.paginator.num_pages }}">آخر &raquo;</a>
+      {% endif %}
+    </div>
+  </div>
+  
+  <!-- Style -->
+  <style>
+    .pagination-btn {
+      background-color: #111;
+      border: 2px solid #FFD700;
+      color: #FFD700;
+      padding: 6px 14px;
+      margin: 0 4px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+  
+    .pagination-btn:hover {
+      background-color: #FFD700;
+      color: #111;
+    }
+  
+    .pagination-current {
+      display: inline-block;
+      background-color: #fff;
+      color: #111;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin: 0 6px;
+      font-weight: bold;
+    }
+  </style>
+  
+  
+
+<footer style="background-color: #111; color: #ccc; padding: 20px 0; font-size: 0.9rem;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <div class="logo">
+        <img src="{% static 'images/icons8-logo-96.png' %}" alt="logo" style="height: 40px;">
+      </div>
+      <div class="text-links" style="display: flex; gap: 15px;">
+        <a href="#" style="color: #ccc; text-decoration: none;">FAQ</a>
+        <a href="#" style="color: #ccc; text-decoration: none;">Help Center</a>
+        <a href="#" style="color: #ccc; text-decoration: none;">Terms</a>
+        <a href="#" style="color: #ccc; text-decoration: none;">Privacy</a>
+      </div>
+    </div>
+    <hr style="margin: 15px 0; border-color: #333;">
+    <div style="text-align: center;">
+      <p style="margin: 0;">&#169; 2025 <a href="#" style="color: #FFD700;">Wenet</a>. All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+{% endblock content %}
